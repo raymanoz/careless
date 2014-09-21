@@ -1,7 +1,6 @@
 package com.unsprung.careless;
 
 import com.googlecode.totallylazy.Function;
-import com.googlecode.totallylazy.annotations.tailrec;
 import org.lesscss.LessSource;
 
 import java.util.Date;
