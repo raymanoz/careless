@@ -13,3 +13,5 @@ hs_err_pid*
 workspace.xml
 out
 uiDesigner.xml
+
+build/artifacts
