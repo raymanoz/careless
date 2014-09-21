@@ -1,10 +1,6 @@
 package com.unsprung.careless;
 
-import com.googlecode.totallylazy.Files;
-import com.googlecode.totallylazy.None;
 import com.googlecode.totallylazy.Option;
-import com.googlecode.totallylazy.Pair;
-import com.googlecode.totallylazy.Sequences;
 import org.junit.Test;
 
 import java.io.File;
@@ -25,14 +21,14 @@ public class CacheFlufferTest {
         final File file = new File("out", "out.css");
         write(bytes("file content"), file);
 
-        CompiledLessCache cache = new CompiledLessCache();
+        CompiledLessCache cache = CompiledLessCache.compiledLessCache();
         cacheFluffer(one(pair("file.css", file.toURI().toURL())), cache);
         assertThat(cache.get("file.css").get().css, is("file content"));
     }
 
     @Test
     public void itShouldIgnoreAndNotPreloadIfFileDoesNotExist() throws MalformedURLException {
-        CompiledLessCache cache = new CompiledLessCache();
+        CompiledLessCache cache = CompiledLessCache.compiledLessCache();
         cacheFluffer(one(pair("file2.css", new URL("file:./out/file2.css"))), cache);
         assertThat(cache.get("file2.css"), is(Option.<CompiledLess>none()));
     }

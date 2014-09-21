@@ -9,10 +9,12 @@ public class CachingLessCompiler implements LessCompiler {
     private final LessCompiler compiler;
     private final CompiledLessCache cache;
 
-    public CachingLessCompiler(LessCompiler compiler, CompiledLessCache cache) {
+    private CachingLessCompiler(LessCompiler compiler, CompiledLessCache cache) {
         this.compiler = compiler;
         this.cache = cache;
     }
+
+    public static CachingLessCompiler cachingLessCompiler(LessCompiler compiler, CompiledLessCache cache) {return new CachingLessCompiler(compiler, cache);}
 
     @Override
     public CompiledLess compile(final LessSource lessSource, final String name) {

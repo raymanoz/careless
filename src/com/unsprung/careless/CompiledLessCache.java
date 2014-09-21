@@ -12,6 +12,10 @@ import static com.googlecode.totallylazy.Option.option;
 public class CompiledLessCache {
     private Map<String, CompiledLess> cache = new HashMap<String, CompiledLess>();
 
+    private CompiledLessCache() {}
+
+    public static CompiledLessCache compiledLessCache() {return new CompiledLessCache();}
+
     public Option<CompiledLess> put(String key, CompiledLess less) {
         return option(cache.put(key, less));
     }

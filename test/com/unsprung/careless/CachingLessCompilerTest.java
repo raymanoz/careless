@@ -17,7 +17,7 @@ import static com.unsprung.careless.StubCompiler.returning;
 import static org.junit.Assert.assertThat;
 
 public class CachingLessCompilerTest {
-    private final CompiledLessCache cache = new CompiledLessCache();
+    private final CompiledLessCache cache = CompiledLessCache.compiledLessCache();
     private final String less = "// I'm a less file";
     private final File lessFile = new File("out", "test.less");
     private final String name = "foo";
@@ -29,7 +29,7 @@ public class CachingLessCompilerTest {
         assertThat(cache.get(name), is(Option.<CompiledLess>none()));
 
         final StubCompiler stubCompiler = returning("bar");
-        new CachingLessCompiler(stubCompiler, cache).compile(new LessSource(lessFile), name);
+        CachingLessCompiler.cachingLessCompiler(stubCompiler, cache).compile(new LessSource(lessFile), name);
         assertThat(cache.get(name), is(some(stubCompiler.compiledResult)));
     }
 
@@ -41,7 +41,7 @@ public class CachingLessCompilerTest {
         cache.put(reallyNewCompiledLess.name, reallyNewCompiledLess);
 
         final StubCompiler stubCompiler = returning("bar");
-        new CachingLessCompiler(stubCompiler, cache).compile(new LessSource(lessFile), reallyNewCompiledLess.name);
+        CachingLessCompiler.cachingLessCompiler(stubCompiler, cache).compile(new LessSource(lessFile), reallyNewCompiledLess.name);
         assertThat(cache.get(reallyNewCompiledLess.name), is(some(reallyNewCompiledLess)));
     }
 }
