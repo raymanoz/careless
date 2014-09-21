@@ -31,10 +31,9 @@ public class LessSourceResolvers {
 
         final Sequence<String> extract = regex.extract(property);
         final String scheme = extract.get(0);
-        if (scheme.equals("jar"))
-            return byJar(property);
-        else if (scheme.equals("file"))
-            return byFile(extract.get(1));
+
+        if (scheme.equals("jar")) return byJar(property);
+        else if (scheme.equals("file")) return byFile(extract.get(1));
 
         throw new RuntimeException("Illegal scheme: " + scheme);
     }
