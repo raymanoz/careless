@@ -1,6 +1,7 @@
 package com.unsprung.careless;
 
 import com.googlecode.totallylazy.Option;
+import com.googlecode.totallylazy.Sequences;
 import org.junit.Test;
 
 import java.io.File;
