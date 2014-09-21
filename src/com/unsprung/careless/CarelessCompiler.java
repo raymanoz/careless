@@ -15,11 +15,15 @@ import static com.unsprung.careless.PostProcessor.postProcessor;
 public class CarelessCompiler implements LessCompiler {
     private final CachingLessCompiler compiler;
 
-    public CarelessCompiler(Iterable<Pair<String, URL>> preloadedFiles, Iterable<Unary<String>> postProcessors) {
+    private CarelessCompiler(Iterable<Pair<String, URL>> preloadedFiles, Iterable<Unary<String>> postProcessors) {
         compiler = cachingLessCompiler(
                 postProcessor(officialLessCompiler(), postProcessors),
                 cacheFluffer(preloadedFiles, compiledLessCache()).cache
         );
+    }
+
+    public static CarelessCompiler carelessCompiler(Iterable<Pair<String, URL>> preloadedFiles, Iterable<Unary<String>> postProcessors) {
+        return new CarelessCompiler(preloadedFiles, postProcessors);
     }
 
     @Override
