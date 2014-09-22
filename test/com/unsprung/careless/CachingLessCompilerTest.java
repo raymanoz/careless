@@ -1,6 +1,7 @@
 package com.unsprung.careless;
 
 import com.googlecode.totallylazy.Option;
+import org.junit.Before;
 import org.junit.Test;
 import org.lesscss.LessSource;
 
@@ -21,6 +22,11 @@ public class CachingLessCompilerTest {
     private final String less = "// I'm a less file";
     private final File lessFile = new File("out", "test.less");
     private final String name = "foo";
+
+    @Before
+    public void createOutputDirectory() throws IOException {
+        new File("out").mkdir();
+    }
 
     @Test
     public void theCachingCompilerShouldCacheCompiledCss() throws IOException {

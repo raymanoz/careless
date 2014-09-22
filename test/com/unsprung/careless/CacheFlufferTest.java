@@ -1,10 +1,11 @@
 package com.unsprung.careless;
 
 import com.googlecode.totallylazy.Option;
-import com.googlecode.totallylazy.Sequences;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -17,8 +18,13 @@ import static com.unsprung.careless.CacheFluffer.cacheFluffer;
 import static org.junit.Assert.assertThat;
 
 public class CacheFlufferTest {
+    @Before
+    public void createOutputDirectory() throws IOException {
+        new File("out").mkdir();
+    }
+
     @Test
-    public void flufferShouldPreloadCacheIfFileExists() throws MalformedURLException {
+    public void flufferShouldPreloadCacheIfFileExists() throws IOException {
         final File file = new File("out", "out.css");
         write(bytes("file content"), file);
 

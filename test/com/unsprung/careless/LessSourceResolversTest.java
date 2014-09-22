@@ -2,6 +2,7 @@ package com.unsprung.careless;
 
 import com.googlecode.totallylazy.Callable1;
 import com.googlecode.totallylazy.Runnables;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
@@ -14,12 +15,15 @@ import static com.googlecode.totallylazy.Closeables.using;
 import static com.googlecode.totallylazy.Files.write;
 import static com.googlecode.totallylazy.Strings.bytes;
 import static com.googlecode.totallylazy.matchers.Matchers.is;
-import static com.unsprung.careless.LessSourceResolvers.byFile;
-import static com.unsprung.careless.LessSourceResolvers.byJar;
-import static com.unsprung.careless.LessSourceResolvers.from;
+import static com.unsprung.careless.LessSourceResolvers.*;
 import static org.junit.Assert.assertThat;
 
 public class LessSourceResolversTest {
+    @Before
+    public void createOutputDirectory() throws IOException {
+        new File("out").mkdir();
+    }
+
     @Test
     public void eachSchemeShouldBeResolvable() {
         from("jar:file:/stuff!/read.me");
@@ -32,14 +36,14 @@ public class LessSourceResolversTest {
     }
 
     @Test
-    public void fileResolverShouldResolverToAFile() {
+    public void fileResolverShouldResolverToAFile() throws IOException {
         String content = "// content";
         write(bytes(content), new File("out", "file.less"));
         assertThat(byFile("out/").apply("file.less").getContent(), is(content));
     }
 
     @Test
-    public void jarResolverShouldResolverToAFileInAJar() {
+    public void jarResolverShouldResolverToAFileInAJar() throws IOException {
         File jar = new File("out", "out.jar");
         final String content = "// content";
         using(aJar(jar), new Callable1<JarOutputStream, Void>() {
