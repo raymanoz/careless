@@ -3,12 +3,8 @@ package com.unsprung.careless;
 import com.googlecode.totallylazy.Sequences;
 import com.googlecode.totallylazy.Unary;
 import org.junit.Test;
-import org.lesscss.LessSource;
-
-import java.util.Date;
 
 import static com.googlecode.totallylazy.Sequences.sequence;
-import static com.unsprung.careless.CompiledLess.compiledLess;
 import static com.unsprung.careless.PostProcessor.postProcessor;
 import static com.unsprung.careless.StubCompiler.returning;
 import static org.hamcrest.Matchers.is;
