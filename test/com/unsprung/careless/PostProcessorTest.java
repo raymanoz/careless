@@ -1,7 +1,5 @@
 package com.unsprung.careless;
 
-import com.googlecode.totallylazy.Function1;
-import com.googlecode.totallylazy.Sequence;
 import com.googlecode.totallylazy.Sequences;
 import com.googlecode.totallylazy.Unary;
 import org.junit.Test;
@@ -16,28 +14,6 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class PostProcessorTest {
-/*
-
-  it should "make changes in order" in {
-    val out =
-      """div {
-        |  color: #ff0000;
-        |}foobar""".stripMargin
-
-    assert(new PostProcessingLessCompiler(returning(in), addText("foo") _ :: addText("bar") _ :: Nil).compile(null, null).css === out)
-  }
-
-  private def replaceColor(source: String): String = source.replaceAll("#ff0000", "#ff1234")
-
-  private def addText(text: String)(source: String): String = source + text
-
-  private def returning(result: String) = new StubCompiler(result)
-  private class StubCompiler(result: String) extends LessCompiler {
-    override def compile(lessSource: LessSource, name: String): CompiledLess = CompiledLess("name", result, new Date())
-  }
-
- */
-
     private static final String in = "div { color: #ff0000; }";
 
     @Test
