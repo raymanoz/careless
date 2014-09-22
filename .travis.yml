@@ -2,4 +2,4 @@ language: java
 jdk:
   - oraclejdk7
 
-script: ./jcompilo.sh
+script: ./travis_build.sh
