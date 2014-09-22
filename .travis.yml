@@ -1,5 +1,8 @@
 language: java
 jdk:
   - oraclejdk7
-
 script: ./travis_build.sh
+env:
+  global:
+  - BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
+  - secure: "R1llXwWLwJ7T8mCpBtwErq9Hqa23LmEjGEGvTjo6+q9UcAq7zBPFetqnN/Z9EiQoJyd2VBT8P5PdbOQN3U7EbirDXHyoM9OaM7NLhmLK3RsVDqSp19mh2QR+v13m6sfIkAO57r0gZlUbl0MLwGz+yBYpDSGvwcrhyf1Dg3mNTT4="
