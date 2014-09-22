@@ -5,7 +5,7 @@ source function_moan.bash
 
 ./jcompilo.sh
 
-version_url=https://api.bintray.com/content/raymanoz/careless/careless/${BUILD_NUMBER}
+version_url=https://api.bintray.com/content/raymanoz/repo/careless/${BUILD_NUMBER}
 artifact="careless-"${BUILD_NUMBER}
 
 cd build/artifacts
