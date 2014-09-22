@@ -1,5 +1,8 @@
 #!/bin/sh
 
+cd "$( dirname "$0" )"
+source function_moan.bash
+
 ./jcompilo.sh
 
 version_url=https://api.bintray.com/content/raymanoz/careless/careless/${BUILD_NUMBER}
