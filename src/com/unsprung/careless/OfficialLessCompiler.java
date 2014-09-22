@@ -8,6 +8,10 @@ import java.util.Date;
 import static com.unsprung.careless.CompiledLess.compiledLess;
 
 public class OfficialLessCompiler implements LessCompiler {
+    private OfficialLessCompiler() {}
+
+    public static OfficialLessCompiler officialLessCompiler() {return new OfficialLessCompiler();}
+
     @Override
     public CompiledLess compile(LessSource lessSource, String name) {
         try {

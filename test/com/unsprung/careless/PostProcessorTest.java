@@ -10,6 +10,7 @@ import java.util.Date;
 import static com.googlecode.totallylazy.Sequences.sequence;
 import static com.unsprung.careless.CompiledLess.compiledLess;
 import static com.unsprung.careless.PostProcessor.postProcessor;
+import static com.unsprung.careless.StubCompiler.returning;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -49,19 +50,5 @@ public class PostProcessorTest {
                 return css + text;
             }
         };
-    }
-
-    private StubCompiler returning(String css) { return new StubCompiler(css); }
-    private static class StubCompiler implements LessCompiler {
-        private String css;
-
-        private StubCompiler(String css) {
-            this.css = css;
-        }
-
-        @Override
-        public CompiledLess compile(LessSource lessSource, String name) {
-            return compiledLess(name, css, new Date());
-        }
     }
 }
