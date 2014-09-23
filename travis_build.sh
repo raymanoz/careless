@@ -1,7 +1,11 @@
 #!/bin/sh
 
+function moan(){
+  echo -e "$1" 1>&2
+  exit 1
+}
+
 cd "$( dirname "$0" )"
-source ./function_moan.bash
 
 ./jcompilo.sh
 
