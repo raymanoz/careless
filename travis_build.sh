@@ -23,8 +23,8 @@ function publish_to_bintray() {
     echo
 
     mkdir s3
-    cp *.jar build/artifacts/s3
-    cp *.pom build/artifacts/s3
+    cp *.jar s3
+    cp *.pom s3
 }
 
 if [[ "${TRAVIS_BRANCH}" == 'master' && "${TRAVIS_PULL_REQUEST}" == 'false' ]]; then
