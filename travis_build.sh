@@ -21,6 +21,10 @@ function publish_to_bintray() {
 
     curl --fail -X POST -uraymanoz:${BINTRAY_API_KEY} ${repo}/careless/${BUILD_NUMBER}/publish || moan "Failed to publish distribution with ${version_url}/publish"
     echo
+
+    mkdir build/artifacts/s3
+    cp build/artifacts/*.jar build/artifacts/s3
+    cp build/artifacts/*.pom build/artifacts/s3
 }
 
 if [[ "${TRAVIS_BRANCH}" == 'master' && "${TRAVIS_PULL_REQUEST}" == 'false' ]]; then
