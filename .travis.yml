@@ -12,9 +12,12 @@ deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
-  bucket: "repo.raymanoz.com"
+  bucket: repo.raymanoz.com
   region: eu-west-1
   endpoint: repo.raymanoz.com.s3-website-eu-west-1.amazonaws.com
   skip_cleanup: true
   local-dir: build/artifacts/s3
   upload-dir: com/unsprung/careless/careless/$BUILD_NUMBER
+notifications:
+  slack:
+    secure: aowMOQh4QLsLw3dEf6I/X+Aue3PAeIZM/UjQub8QJzsmEGGth2fNCZ9hY+baa/kL2YWohG5SUuMtn/L+hz8Lf/1vsJTLgPn7m6IPsiDgs0w13wbBtaQNeeDutTr3TQMhTb6mxTolONR4u2CEshjwViJrQjHQvyW530mRTaQS4Nc=
