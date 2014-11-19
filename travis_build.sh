@@ -10,7 +10,7 @@ cd "$( dirname "$0" )"
 ./jcompilo.sh
 
 repo=https://api.bintray.com/content/raymanoz/repo
-version_url=${repo}/com/unsprung/careless/careless/${BUILD_NUMBER}
+version_url=${repo}/com/raymanoz/careless/careless/${BUILD_NUMBER}
 artifact="careless-"${BUILD_NUMBER}
 
 cd build/artifacts

@@ -25,4 +25,4 @@ You can source the less files from:
 * the file system, using the LessResolvers.byFile()
 * inside a jar, using LessResolvers.byJar()
 
-For an example, see [this test](https://github.com/raymanoz/careless/blob/master/test/com/unsprung/careless/LessSourceResolversTest.java)
+For an example, see [this test](https://github.com/raymanoz/careless/blob/master/test/com/raymanoz/careless/LessSourceResolversTest.java)
