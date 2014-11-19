@@ -1,4 +1,4 @@
-package com.unsprung.careless;
+package com.raymanoz.careless;
 
 import com.googlecode.totallylazy.ReducerFunction;
 import com.googlecode.totallylazy.Unary;

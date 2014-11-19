@@ -1,11 +1,11 @@
-package com.unsprung.careless;
+package com.raymanoz.careless;
 
 import org.lesscss.LessException;
 import org.lesscss.LessSource;
 
 import java.util.Date;
 
-import static com.unsprung.careless.CompiledLess.compiledLess;
+import static com.raymanoz.careless.CompiledLess.compiledLess;
 
 public class OfficialLessCompiler implements LessCompiler {
     private OfficialLessCompiler() {}

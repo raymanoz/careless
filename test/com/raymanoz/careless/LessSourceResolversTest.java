@@ -1,4 +1,4 @@
-package com.unsprung.careless;
+package com.raymanoz.careless;
 
 import com.googlecode.totallylazy.Callable1;
 import com.googlecode.totallylazy.Runnables;
@@ -15,7 +15,7 @@ import static com.googlecode.totallylazy.Closeables.using;
 import static com.googlecode.totallylazy.Files.write;
 import static com.googlecode.totallylazy.Strings.bytes;
 import static com.googlecode.totallylazy.matchers.Matchers.is;
-import static com.unsprung.careless.LessSourceResolvers.*;
+import static com.raymanoz.careless.LessSourceResolvers.*;
 import static org.junit.Assert.assertThat;
 
 public class LessSourceResolversTest {

@@ -1,10 +1,8 @@
-package com.unsprung.careless;
+package com.raymanoz.careless;
 
 import org.lesscss.LessSource;
 
 import java.util.Date;
-
-import static com.unsprung.careless.CompiledLess.compiledLess;
 
 public class StubCompiler implements LessCompiler {
     private String css;
@@ -18,7 +16,7 @@ public class StubCompiler implements LessCompiler {
 
     @Override
     public CompiledLess compile(LessSource lessSource, String name) {
-        compiledResult = compiledLess(name, css, new Date());
+        compiledResult = CompiledLess.compiledLess(name, css, new Date());
         return compiledResult;
     }
 }

@@ -1,4 +1,4 @@
-package com.unsprung.careless;
+package com.raymanoz.careless;
 
 import com.googlecode.totallylazy.Option;
 import org.junit.Before;
@@ -13,8 +13,8 @@ import static com.googlecode.totallylazy.Option.some;
 import static com.googlecode.totallylazy.Strings.bytes;
 import static com.googlecode.totallylazy.matchers.Matchers.is;
 import static com.googlecode.totallylazy.time.Dates.MAX_VALUE;
-import static com.unsprung.careless.CompiledLess.compiledLess;
-import static com.unsprung.careless.StubCompiler.returning;
+import static com.raymanoz.careless.CompiledLess.compiledLess;
+import static com.raymanoz.careless.StubCompiler.returning;
 import static org.junit.Assert.assertThat;
 
 public class CachingLessCompilerTest {

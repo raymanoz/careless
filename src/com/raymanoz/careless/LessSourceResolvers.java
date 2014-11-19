@@ -1,4 +1,4 @@
-package com.unsprung.careless;
+package com.raymanoz.careless;
 
 import com.googlecode.totallylazy.Function1;
 import com.googlecode.totallylazy.Sequence;
