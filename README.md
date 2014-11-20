@@ -26,3 +26,7 @@ You can source the less files from:
 * inside a jar, using LessResolvers.byJar()
 
 For an example, see [this test](https://github.com/raymanoz/careless/blob/master/test/com/raymanoz/careless/LessSourceResolversTest.java)
+
+Code license
+------------
+Apache License 2.0
