@@ -18,3 +18,4 @@ deploy:
   skip_cleanup: true
   local-dir: build/artifacts/s3
   upload-dir: com/raymanoz/careless/careless/$BUILD_NUMBER
+sudo: false
