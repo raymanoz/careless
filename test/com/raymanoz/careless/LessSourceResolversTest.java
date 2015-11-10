@@ -1,6 +1,7 @@
 package com.raymanoz.careless;
 
 import com.googlecode.totallylazy.Callable1;
+import com.googlecode.totallylazy.Files;
 import com.googlecode.totallylazy.Runnables;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,13 +26,15 @@ public class LessSourceResolversTest {
     }
 
     @Test
-    public void eachSchemeShouldBeResolvable() {
-        from("jar:file:/stuff!/read.me");
-        from("file:/file/on/your/disk.txt");
+    public void eachSchemeShouldBeResolvable() throws Exception {
+        File jar = createJar("out1.jar", "// stuff");
+        from("jar:file:"+ jar.getAbsolutePath()+"!/thing.less");
+        File file = Files.temporaryFile();
+        from("file:" + file.getAbsolutePath());
     }
 
     @Test(expected = RuntimeException.class)
-    public void shouldThrowAnExceptionOnBadScheme() {
+    public void shouldThrowAnExceptionOnBadScheme() throws Exception {
         from("mars:/wecomeinpeace/shoottokill");
     }
 
@@ -39,13 +42,17 @@ public class LessSourceResolversTest {
     public void fileResolverShouldResolverToAFile() throws IOException {
         String content = "// content";
         write(bytes(content), new File("out", "file.less"));
-        assertThat(byFile().apply("out/file.less").getContent(), is(content));
+        assertThat(byFile("out/file.less").getContent(), is(content));
     }
 
     @Test
-    public void jarResolverShouldResolverToAFileInAJar() throws IOException {
-        File jar = new File("out", "out.jar");
+    public void jarResolverShouldResolverToAFileInAJar() throws Exception {
         final String content = "// content";
+        assertThat(byJar("jar:file:" + createJar("out2.jar", content).getAbsolutePath() + "!/thing.less").getContent(), is(content));
+    }
+
+    private File createJar(final String name, final String content) {
+        File jar = new File("out", name);
         using(aJar(jar), new Callable1<JarOutputStream, Void>() {
             @Override
             public Void call(JarOutputStream stream) throws Exception {
@@ -53,7 +60,7 @@ public class LessSourceResolversTest {
                 return Runnables.VOID;
             }
         });
-        assertThat(byJar().apply("jar:file:" + jar.getAbsolutePath() + "!/thing.less").getContent(), is(content));
+        return jar;
     }
 
     private JarOutputStream aJar(File file) {
