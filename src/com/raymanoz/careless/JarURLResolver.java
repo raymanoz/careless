@@ -1,48 +1,52 @@
 package com.raymanoz.careless;
 
-import org.lesscss.LessResolver;
+import org.lesscss.Resource;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
 import static com.googlecode.totallylazy.Sequences.sequence;
-import static com.googlecode.totallylazy.Strings.string;
 
-public class JarURLResolver implements LessResolver {
-    private final String path;
+public class JarURLResolver implements Resource {
+    private final String file;
 
-    public JarURLResolver(String path) {
-        this.path = path;
+    public JarURLResolver(String file) {
+        this.file = file;
     }
 
     @Override
-    public boolean exists(String file) {
+    public boolean exists() {
         return urlConnection(file).getLastModified() != 0;
     }
 
     @Override
-    public String resolve(String file) throws IOException {
-        return string(urlConnection(file).getInputStream());
-    }
-
-    @Override
-    public long getLastModified(String file) {
+    public long lastModified() {
         return urlConnection(file).getLastModified();
     }
 
     @Override
-    public LessResolver resolveImport(String parent) {
-        return new JarURLResolver(sequence(full(parent).split("/")).init().toString("", "/", "/"));
+    public InputStream getInputStream() throws IOException {
+        return urlConnection(file).getInputStream();
+    }
+
+    @Override
+    public Resource createRelative(String relativeResourcePath) throws IOException {
+        return new JarURLResolver(sequence(relativeResourcePath.split("/")).init().toString("", "/", "/"));
+    }
+
+    @Override
+    public String getName() {
+        return file;
     }
 
     private URLConnection urlConnection(String file) {
         try {
-            return new URL(full(file)).openConnection();
+            return new URL(file).openConnection();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private String full(String file) { return path + file; }
 }

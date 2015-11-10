@@ -8,20 +8,20 @@ import org.lesscss.LessSource;
 import java.io.File;
 
 public class LessSourceResolvers {
-    public static Function1<String, LessSource> byJar(final String path) {
+    public static Function1<String, LessSource> byJar() {
         return new Function1<String, LessSource>() {
             @Override
             public LessSource call(String lessFile) throws Exception {
-                return new LessSource(lessFile, new JarURLResolver(path));
+                return new LessSource(new JarURLResolver(lessFile));
             }
         };
     }
 
-    public static Function1<String, LessSource> byFile(final String path) {
+    public static Function1<String, LessSource> byFile() {
         return new Function1<String, LessSource>() {
             @Override
             public LessSource call(String lessFile) throws Exception {
-                return new LessSource(new File(path + lessFile));
+                return new LessSource(new File(lessFile));
             }
         };
     }
@@ -32,8 +32,8 @@ public class LessSourceResolvers {
         final Sequence<String> extract = regex.extract(property);
         final String scheme = extract.get(0);
 
-        if (scheme.equals("jar")) return byJar(property);
-        else if (scheme.equals("file")) return byFile(extract.get(1));
+        if (scheme.equals("jar")) return byJar();
+        else if (scheme.equals("file")) return byFile();
 
         throw new RuntimeException("Illegal scheme: " + scheme);
     }
