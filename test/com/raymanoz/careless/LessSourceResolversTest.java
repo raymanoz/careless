@@ -39,13 +39,13 @@ public class LessSourceResolversTest {
     public void fileResolverShouldResolverToAFile() throws IOException {
         String content = "// content";
         write(bytes(content), new File("out", "file.less"));
-        assertThat(byFile().apply("out/file.less").getContent(), is(content));
+        assertThat(byFile("./").apply("out/file.less").getContent(), is(content));
     }
 
     @Test
     public void jarResolverShouldResolverToAFileInAJar() throws Exception {
         final String content = "// content";
         String jar = createJar("out2.jar", sequence(pair("thing.less", content))).getAbsolutePath();
-        assertThat(byJar().apply("jar:file:" + jar + "!/thing.less").getContent(), is(content));
+        assertThat(byJar("jar:file:" + jar + "!/").apply("thing.less").getContent(), is(content));
     }
 }

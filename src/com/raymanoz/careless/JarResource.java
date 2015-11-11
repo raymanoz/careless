@@ -9,36 +9,36 @@ import java.net.URLConnection;
 
 import static com.googlecode.totallylazy.Sequences.sequence;
 
-public class JarURLResolver implements Resource {
-    private final String file;
+public class JarResource implements Resource {
+    private final String entry;
 
-    public JarURLResolver(String file) {
-        this.file = file;
+    public JarResource(String entry) {
+        this.entry = entry;
     }
 
     @Override
     public boolean exists() {
-        return urlConnection(file).getLastModified() != 0;
+        return urlConnection(entry).getLastModified() != 0;
     }
 
     @Override
     public long lastModified() {
-        return urlConnection(file).getLastModified();
+        return urlConnection(entry).getLastModified();
     }
 
     @Override
     public InputStream getInputStream() throws IOException {
-        return urlConnection(file).getInputStream();
+        return urlConnection(entry).getInputStream();
     }
 
     @Override
     public Resource createRelative(String relativeResourcePath) throws IOException {
-        return new JarURLResolver(sequence(file.split("/")).init().toString("", "/", "/") + relativeResourcePath);
+        return new JarResource(sequence(entry.split("/")).init().toString("", "/", "/") + relativeResourcePath);
     }
 
     @Override
     public String getName() {
-        return file;
+        return entry;
     }
 
     private URLConnection urlConnection(String file) {

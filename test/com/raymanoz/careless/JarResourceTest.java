@@ -14,7 +14,7 @@ import static com.googlecode.totallylazy.matchers.Matchers.is;
 import static com.raymanoz.careless.TestHelpers.createJar;
 import static org.junit.Assert.assertThat;
 
-public class JarURLResolverTest {
+public class JarResourceTest {
     @Test
     public void jarURLResolverResolveNestedLessFiles() throws Exception {
         String source = ".font-awesome {\n  font-family: FontAwesome;\n}\n\n";
@@ -22,7 +22,7 @@ public class JarURLResolverTest {
                 pair("base.less", "@import \"nested/nested.less\";"),
                 pair("nested/nested.less", source)));
         CarelessCompiler compiler = CarelessCompiler.carelessCompiler(Sequences.<Pair<String, URL>>empty(), Sequences.<Unary<String>>empty());
-        CompiledLess compiledLess = compiler.compile(LessSourceResolvers.byJar().apply("jar:file:" + jar.getAbsolutePath() + "!/base.less"), null);
+        CompiledLess compiledLess = compiler.compile(LessSourceResolvers.byJar("jar:file:"+ jar.getAbsolutePath() + "!/").apply("base.less"), null);
         assertThat(compiledLess.css, is(source));
     }
 }
