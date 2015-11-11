@@ -33,7 +33,7 @@ public class JarURLResolver implements Resource {
 
     @Override
     public Resource createRelative(String relativeResourcePath) throws IOException {
-        return new JarURLResolver(sequence(relativeResourcePath.split("/")).init().toString("", "/", "/"));
+        return new JarURLResolver(sequence(file.split("/")).init().toString("", "/", "/") + relativeResourcePath);
     }
 
     @Override
